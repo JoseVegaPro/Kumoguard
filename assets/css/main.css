@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    font-size: 60px;
+}
+
+.container {
+    max-width: 80%;
+}
+
+.typewriter-text {
+    display: inline-block;
+    border-right: 10px solid #DEA193;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 90vw; /* Ensures text stays within the screen */
+    text-align: center;
+}
+
+/* Glowing Effect for Each Letter */
+.glow {
+    color: #ffffff;
+    text-shadow: 0 0 5px #DEA193, 0 0 10px rgba(222, 161, 147, 0.5);
+    animation: glow-animation 2s ease-in-out infinite;
+}
+
+@keyframes glow-animation {
+    0%, 100% {
+        text-shadow: 0 0 5px #DEA193, 0 0 10px rgba(222, 161, 147, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 8px #DEA193, 0 0 15px rgba(222, 161, 147, 0.3);
+    }
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(1px);
+    mix-blend-mode: screen;
+}
