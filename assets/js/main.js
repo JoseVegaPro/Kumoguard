@@ -1,13 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const messages = [
-        "Kindness is not Weakness.",
-        "Patience is not Weakness.",
-        "Strength comes from GOD",
-        "Waiting means preparation",
-        "TRUST IN HIM",
+        "Kindness is strength in disguise.",
+        "Patience is power held steady.",
+        "True strength flows from GOD.",
+        "Waiting is not idle — it's preparation.",
+        "TRUST HIM, even in the silence.",
+        "Romans 8:28",
+        "And we know that all things",
+        "work together for good",
+        "to those who love God,",
+        "to those who are the called",
+        "according to His purpose.",
     ];
     let messageIndex = 0;
     let i = 0;
+    let hasLoopedOnce = false;
     const typewriterElement = document.getElementById("typewriter");
 
     // Particle Effect Setup
@@ -104,7 +111,15 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             messageIndex = (messageIndex + 1) % messages.length;
             i = 0;
-            setTimeout(typeWriter, 500); // Pause before retyping
+
+            // If we just finished the last message
+            const isEndOfCycle = messageIndex === 0;
+            if (isEndOfCycle && !hasLoopedOnce) {
+                hasLoopedOnce = true;
+                setTimeout(typeWriter, 3000); // longer pause only after first full cycle
+            } else {
+                setTimeout(typeWriter, 500); // normal pause
+            }
         }
     }
 
