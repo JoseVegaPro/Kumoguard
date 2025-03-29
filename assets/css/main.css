@@ -52,3 +52,24 @@ body {
     filter: blur(1px);
     mix-blend-mode: screen;
 }
+
+#message-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    animation: pulseGlow 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(222, 161, 147, 0.5);
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(222, 161, 147, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(222, 161, 147, 0.8);
+    }
+}
