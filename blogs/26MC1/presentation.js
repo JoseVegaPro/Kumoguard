@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.setTimeout(() => {
       const slideNode = slides[state.slideIndex];
       slideEl.innerHTML = slideNode ? slideNode.innerHTML : "";
+      slideEl.classList.toggle("is-warmup", slideNode?.dataset?.slide === "warmup");
       applyLanguage(slideEl, state.lang);
       slideEl.scrollTop = 0;
       slideEl.classList.remove("is-transitioning");
