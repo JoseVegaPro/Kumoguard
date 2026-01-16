@@ -4,18 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kumoguard Blog</title>
-  <link rel="stylesheet" href="../assets/css/main.css" />
+  <meta name="description" content="Kumoguard Blog — signals, notes, and field reports." />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
 </head>
-<body style="background-color: black;">
-  <canvas id="particles"></canvas>
-  <div class="container">
-    <h1>📝 Kumoguard Blog</h1>
-    <p>Welcome to our blog — insights coming soon!</p>
-    <a href="/blogs/26MC1/" class="nav-link">26MC1</a>
-    <br />
-    <a href="/" class="nav-link">← Back to Home</a>
-    <span class="typewriter-text" id="typewriter" style="display:none;"></span>
-  </div>
-  <script src="../assets/js/main.js"></script>
+<body class="blog-landing">
+  <canvas id="neonfield" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="fx fx-noise" aria-hidden="true"></div>
+  <div class="fx fx-scanlines" aria-hidden="true"></div>
+  <div class="fx fx-vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/blogs/" aria-label="Kumoguard Blog Home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">Kumoguard // Blog</span>
+    </a>
+
+    <nav class="nav">
+      <a class="nav-link" href="/blogs/26MC1/">26MC1</a>
+      <a class="nav-link" href="/">Home</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="kicker">SIGNAL INBOUND</div>
+      <h1 class="title glitch" data-text="Kumoguard Blog">Kumoguard Blog</h1>
+      <p class="subtitle">Signals, notes, and field reports — clean cuts, sharp edges.</p>
+
+      <div class="cta">
+        <a class="btn primary" href="/blogs/26MC1/">
+          <span class="btn-label">Enter 26MC1</span>
+          <span class="btn-icon" aria-hidden="true">↗</span>
+        </a>
+        <a class="btn" href="/">Back to Home</a>
+      </div>
+
+      <div class="hud" role="status" aria-live="polite">
+        <div class="hud-item">
+          <div class="hud-k">Link</div>
+          <div class="hud-v" id="hud-link">NETRUN // SYNC</div>
+        </div>
+        <div class="hud-item">
+          <div class="hud-k">Ping</div>
+          <div class="hud-v"><span id="hud-ping">—</span> ms</div>
+        </div>
+        <div class="hud-item">
+          <div class="hud-k">Uptime</div>
+          <div class="hud-v" id="hud-uptime">00:00:00</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Posts">
+      <a class="card featured" href="/blogs/26MC1/">
+        <div class="card-top">
+          <span class="tag">FEATURED</span>
+          <span class="meta">26MC1</span>
+        </div>
+        <h2 class="card-title">Armor of God — Interactive Deck</h2>
+        <p class="card-body">A presentation-style post with theme + language toggles, built for mobile and big screens.</p>
+        <div class="card-bottom">
+          <span class="chip">EN/JA</span>
+          <span class="chip">Slides</span>
+          <span class="go" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <div class="card ghost" aria-hidden="true">
+        <div class="card-top">
+          <span class="tag alt">COMING</span>
+          <span class="meta">—</span>
+        </div>
+        <h2 class="card-title">More drops soon</h2>
+        <p class="card-body">New posts are spooling in the background. Keep your optics tuned.</p>
+        <div class="card-bottom">
+          <span class="chip">WIP</span>
+          <span class="chip">Queue</span>
+          <span class="go" aria-hidden="true">…</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-left">© <span id="year"></span> Kumoguard</div>
+      <div class="footer-right">Built to glow in the dark.</div>
+    </footer>
+  </main>
+
+  <script src="../assets/js/blog.js" defer></script>
 </body>
 </html>
