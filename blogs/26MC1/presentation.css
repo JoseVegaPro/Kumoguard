@@ -48,10 +48,22 @@ a {
 a:hover { opacity: 1; }
 
 #app {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+}
+
+.bg-net {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
 }
 
 .topbar {
@@ -381,4 +393,5 @@ em { color: rgba(255, 255, 255, 0.9); }
 @media (prefers-reduced-motion: reduce) {
   .btn, .slide, .thumb { transition: none; }
   .slide.is-warmup { animation: none; }
+  .bg-net { display: none; }
 }

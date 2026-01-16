@@ -35,8 +35,148 @@ function setHashState({ slideIndex, lang }) {
   if (window.location.hash !== next) window.location.hash = next;
 }
 
+function startNeuralBackground(canvas, initialTheme) {
+  const ctx = canvas.getContext("2d", { alpha: true });
+  if (!ctx) return null;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let rafId = 0;
+  let running = true;
+  let theme = initialTheme;
+
+  let dotRgb = "255,255,255";
+  let lineRgb = "255,255,255";
+  const accentRgb = "222,161,147";
+
+  function setTheme(nextTheme) {
+    theme = nextTheme;
+    if (theme === "light") {
+      dotRgb = "10,12,18";
+      lineRgb = "10,12,18";
+    } else {
+      dotRgb = "255,255,255";
+      lineRgb = "255,255,255";
+    }
+  }
+  setTheme(theme);
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = canvas.clientWidth || window.innerWidth;
+    height = canvas.clientHeight || window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  const nodes = [];
+  function reseed() {
+    nodes.length = 0;
+    const area = width * height;
+    const count = Math.max(34, Math.min(78, Math.round(area / 24000)));
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: 1.1 + Math.random() * 1.4,
+      });
+    }
+  }
+
+  function step() {
+    if (!running) return;
+
+    ctx.clearRect(0, 0, width, height);
+
+    for (const n of nodes) {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0) { n.x = 0; n.vx *= -1; }
+      if (n.x > width) { n.x = width; n.vx *= -1; }
+      if (n.y < 0) { n.y = 0; n.vy *= -1; }
+      if (n.y > height) { n.y = height; n.vy *= -1; }
+    }
+
+    const maxDist = 140;
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > maxDist) continue;
+        const t = 1 - dist / maxDist;
+        ctx.strokeStyle = `rgba(${lineRgb},${0.04 + t * 0.18})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    for (const n of nodes) {
+      ctx.fillStyle = `rgba(${dotRgb},${theme === "light" ? 0.18 : 0.14})`;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `rgba(${accentRgb},${theme === "light" ? 0.14 : 0.10})`;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r + 0.9, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    rafId = window.requestAnimationFrame(step);
+  }
+
+  function stop() {
+    running = false;
+    if (rafId) window.cancelAnimationFrame(rafId);
+  }
+
+  resize();
+  reseed();
+  rafId = window.requestAnimationFrame(step);
+
+  const onResize = () => {
+    resize();
+    reseed();
+  };
+  window.addEventListener("resize", onResize, { passive: true });
+
+  const onVisibility = () => {
+    if (document.visibilityState === "hidden") {
+      stop();
+      return;
+    }
+    if (!running) {
+      running = true;
+      resize();
+      reseed();
+      rafId = window.requestAnimationFrame(step);
+    }
+  };
+  document.addEventListener("visibilitychange", onVisibility);
+
+  return {
+    setTheme,
+    stop: () => {
+      stop();
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVisibility);
+    },
+  };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const rootEl = document.documentElement;
+  const bgCanvas = document.getElementById("bg-net");
   const slideEl = document.getElementById("slide");
   const slidesDataEl = document.getElementById("slides-data");
   const overviewEl = document.getElementById("overview");
@@ -61,9 +201,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     theme: "dark", // "dark" | "light"
   };
 
+  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const network = bgCanvas && !prefersReducedMotion ? startNeuralBackground(bgCanvas, state.theme) : null;
+
   function setTheme(theme) {
     state.theme = theme;
     rootEl.setAttribute("data-theme", theme);
+    network?.setTheme(theme);
     try {
       window.localStorage.setItem("kumoguard:26MC1:theme", theme);
     } catch {}
