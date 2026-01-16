@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>26MC1 | Kumoguard</title>
+  <meta name="description" content="26MC1 presentation" />
+  <link rel="stylesheet" href="./presentation.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="left">
+        <a class="pill" href="/blogs/">
+          <span class="brand">Kumoguard</span>
+          <span>Blog</span>
+        </a>
+        <span class="lang-hint">Keys: ← →, O overview, E/J language, T theme</span>
+      </div>
+      <div class="brand">26MC1</div>
+      <div class="right">
+        <button id="btn-theme" class="btn" type="button">Theme</button>
+        <button id="btn-lang-en" class="btn" type="button" aria-pressed="true">English</button>
+        <button id="btn-lang-ja" class="btn" type="button" aria-pressed="false">日本語</button>
+        <button id="btn-prev" class="btn" type="button">Prev</button>
+        <button id="btn-next" class="btn primary" type="button">Next</button>
+        <button id="btn-overview" class="btn" type="button">Overview</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <article id="slide" class="slide" aria-live="polite"></article>
+
+      <div id="slides-data" hidden>
+        <section data-title="Warm-up Question (Large Group)">
+          <h2>Warm-up Question (Large Group)</h2>
+          <ul>
+            <li>How do you prepare to go on vacation?</li>
+            <li>Is there a specific checklist you go through or supplies you always make sure to pack?</li>
+          </ul>
+        </section>
+
+        <section data-title="Scripture Reading">
+          <h2>Scripture Reading</h2>
+
+          <section data-lang="en">
+            <h3>Scripture Reading — English (NKJV)</h3>
+            <p><strong>Ephesians 6:10–24 (NKJV)</strong></p>
+            <div class="reading">
+              <p>
+                10 Finally, my brethren, be strong in the Lord and in the power of His might.<br />
+                11 Put on the whole armor of God, that you may be able to stand against the wiles of the devil.<br />
+                12 For we do not wrestle against flesh and blood, but against principalities, against powers, against the rulers of the darkness of this age, against spiritual hosts of wickedness in the heavenly places.<br />
+                13 Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand.<br />
+                <br />
+                14 Stand therefore, having girded your waist with truth, having put on the breastplate of righteousness,<br />
+                15 and having shod your feet with the preparation of the gospel of peace;<br />
+                16 above all, taking the shield of faith with which you will be able to quench all the fiery darts of the wicked one.<br />
+                17 And take the helmet of salvation, and the sword of the Spirit, which is the word of God;<br />
+                <br />
+                18 praying always with all prayer and supplication in the Spirit, being watchful to this end with all perseverance and supplication for all the saints—<br />
+                19 and for me, that utterance may be given to me, that I may open my mouth boldly to make known the mystery of the gospel,<br />
+                20 for which I am an ambassador in chains; that in it I may speak boldly, as I ought to speak.<br />
+                <br />
+                21 But that you also may know my affairs and how I am doing, Tychicus, a beloved brother and faithful minister in the Lord, will make all things known to you;<br />
+                22 whom I have sent to you for this very purpose, that you may know our affairs, and that he may comfort your hearts.<br />
+                <br />
+                23 Peace to the brethren, and love with faith, from God the Father and the Lord Jesus Christ.<br />
+                24 Grace be with all those who love our Lord Jesus Christ in sincerity. Amen.
+              </p>
+            </div>
+          </section>
+
+          <section data-lang="ja">
+            <h3>Scripture Reading — 日本語（新共同訳）</h3>
+            <h3>日本語聖書（新共同訳）</h3>
+            <p><strong>エフェソの信徒への手紙 6:10–24（新共同訳）</strong></p>
+            <div class="reading">
+              <p>
+                10 最後に言う。主に依り頼み、その偉大な力によって強くなりなさい。<br />
+                11 悪魔の策略に対抗して立つことができるように、神の武具をすべて身に着けなさい。<br />
+                12 私たちの戦いは、血肉を相手にするものではなく、支配と権威、闇の世界の支配者、天にいる悪霊どもを相手にするものなのです。<br />
+                13 だから、邪悪な日によく抵抗し、すべてを成し遂げて、堅く立つことができるように、神の武具をすべて身に着けなさい。<br />
+                <br />
+                14 立って、真理を帯として腰に締め、正義を胸当てとして着け、<br />
+                15 平和の福音を伝える準備を履物とし、足にはいて、<br />
+                16 その上に、信仰を盾として取りなさい。それをもって、悪い者の放つ火のような矢をすべて消すことができます。<br />
+                17 救いの兜をかぶり、霊の剣、すなわち神の言葉を取りなさい。<br />
+                <br />
+                18 どのような時にも、霊に助けられて祈り、願い求め、すべての聖なる者たちのために、目を覚まして忍耐強く祈り続けなさい。<br />
+                19 また、私のためにも祈ってください。語るべき時に語る力を与えられ、福音の秘義を大胆に知らせることができるように。<br />
+                20 私は鎖につながれたまま、その福音のために大使の役を果たしています。大胆に語ることができるように祈ってください。<br />
+                <br />
+                21 あなたがたにも、私の事情や私のしていることが分かるように、主にある愛する兄弟であり、忠実に仕えている者テキコが、すべてを知らせるでしょう。<br />
+                22 あなたがたを励ますため、また私たちの様子を知らせるために、私は彼をそちらへ遣わしました。<br />
+                <br />
+                23 父なる神と主イエス・キリストから、兄弟たちに平和と、信仰に伴う愛とがあるように。<br />
+                24 私たちの主イエス・キリストを変わらぬ愛をもって愛するすべての人々に、恵みがあるように。
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <section data-title="Core Question (Large Group)">
+          <h2>Core Question (Large Group)</h2>
+          <p>
+            The word <strong>“stand”</strong> appears four times in verses 11–14.<br />
+            If our primary command is to <em>“stand our ground,”</em> what does that tell us about whether this battle is offensive or defensive?
+          </p>
+        </section>
+
+        <section data-title="Part I: The Protective Armor (Small Group)">
+          <h2>Part I: The Protective Armor (Small Group)</h2>
+          <details class="verse-toggle">
+            <summary>Reread: Ephesians 6:14–16</summary>
+            <div class="reading">
+              <section data-lang="en">
+                <p>
+                  14 Stand therefore, having girded your waist with truth, having put on the breastplate of righteousness,<br />
+                  15 and having shod your feet with the preparation of the gospel of peace;<br />
+                  16 above all, taking the shield of faith with which you will be able to quench all the fiery darts of the wicked one.
+                </p>
+              </section>
+              <section data-lang="ja">
+                <p>
+                  14 立って、真理を帯として腰に締め、正義を胸当てとして着け、<br />
+                  15 平和の福音を伝える準備を履物とし、足にはいて、<br />
+                  16 その上に、信仰を盾として取りなさい。それをもって、悪い者の放つ火のような矢をすべて消すことができます。
+                </p>
+              </section>
+            </div>
+          </details>
+          <ol>
+            <li>
+              <strong>The Belt and Breastplate</strong>
+              <ul>
+                <li>Why do you think the Belt of Truth is the very first piece mentioned?</li>
+                <li>How does the Breastplate of Righteousness protect a believer's “heart” from the enemy's accusations?</li>
+              </ul>
+            </li>
+            <li>
+              <strong>The Footwear</strong>
+              <ul>
+                <li>Verse 15 speaks of being ready with the Gospel of Peace.</li>
+                <li>Why is a message of “peace” included in a description of battle gear?</li>
+              </ul>
+            </li>
+            <li>
+              <strong>The Shield</strong>
+              <ul>
+                <li>How does faith act as a shield that “extinguishes” flaming arrows?</li>
+                <li>What kind of “arrows” (thoughts or doubts) do you find yourself needing to deflect most often?</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section data-title="Part II: The Helmet, the Sword, and the Power of Prayer (Small Group)">
+          <h2>Part II: The Helmet, the Sword, and the Power of Prayer (Small Group)</h2>
+          <details class="verse-toggle">
+            <summary>Reread: Ephesians 6:17–20</summary>
+            <div class="reading">
+              <section data-lang="en">
+                <p>
+                  17 And take the helmet of salvation, and the sword of the Spirit, which is the word of God;<br />
+                  18 praying always with all prayer and supplication in the Spirit, being watchful to this end with all perseverance and supplication for all the saints—<br />
+                  19 and for me, that utterance may be given to me, that I may open my mouth boldly to make known the mystery of the gospel,<br />
+                  20 for which I am an ambassador in chains; that in it I may speak boldly, as I ought to speak.
+                </p>
+              </section>
+              <section data-lang="ja">
+                <p>
+                  17 救いの兜をかぶり、霊の剣、すなわち神の言葉を取りなさい。<br />
+                  18 どのような時にも、霊に助けられて祈り、願い求め、すべての聖なる者たちのために、目を覚まして忍耐強く祈り続けなさい。<br />
+                  19 また、私のためにも祈ってください。語るべき時に語る力を与えられ、福音の秘義を大胆に知らせることができるように。<br />
+                  20 私は鎖につながれたまま、その福音のために大使の役を果たしています。大胆に語ることができるように祈ってください。
+                </p>
+              </section>
+            </div>
+          </details>
+          <ol>
+            <li>
+              <strong>The Helmet</strong>
+              <ul>
+                <li>Why would our salvation be described as a helmet?</li>
+                <li>How does knowing the ultimate victory is already won change how you “wear” your faith publicly?</li>
+              </ul>
+            </li>
+            <li>
+              <strong>The Sword</strong>
+              <ul>
+                <li>The Sword of the Spirit is the only offensive weapon listed, identified as the Word of God.</li>
+                <li>How did Jesus use this specific weapon when He was tempted in the desert?</li>
+              </ul>
+            </li>
+            <li>
+              <strong>The Final Weapon: Prayer</strong>
+              <ul>
+                <li>Paul urges believers to “pray in the Spirit on all occasions.”</li>
+                <li>Why is persistent prayer for “all the Lord’s people” essential for standing firm together?</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <section id="overview" class="overview" aria-label="Slide overview">
+        <div id="overview-grid" class="overview-grid"></div>
+      </section>
+    </main>
+
+    <div id="counter" class="counter"></div>
+    <div class="progress"><div id="progress-bar"></div></div>
+  </div>
+
+  <script src="./presentation.js"></script>
+</body>
+</html>
