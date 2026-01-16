@@ -186,6 +186,43 @@ document.addEventListener("DOMContentLoaded", async () => {
   btnLangEn.addEventListener("click", () => setLang("en"));
   btnLangJa.addEventListener("click", () => setLang("ja"));
 
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartAt = 0;
+  slideEl.addEventListener(
+    "touchstart",
+    (e) => {
+      if (state.overview) return;
+      const t = e.touches?.[0];
+      if (!t) return;
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartAt = Date.now();
+    },
+    { passive: true },
+  );
+  slideEl.addEventListener(
+    "touchend",
+    (e) => {
+      if (state.overview) return;
+      const t = e.changedTouches?.[0];
+      if (!t) return;
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      const dt = Date.now() - touchStartAt;
+
+      const absX = Math.abs(dx);
+      const absY = Math.abs(dy);
+      const looksHorizontal = absX > 80 && absX > absY * 2;
+      const isQuickEnough = dt < 650;
+      if (!looksHorizontal || !isQuickEnough) return;
+
+      if (dx < 0) next();
+      else prev();
+    },
+    { passive: true },
+  );
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
       e.preventDefault();

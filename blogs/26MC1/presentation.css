@@ -49,6 +49,7 @@ a:hover { opacity: 1; }
 
 #app {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -61,7 +62,7 @@ a:hover { opacity: 1; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
+  padding: calc(12px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 12px calc(16px + env(safe-area-inset-left));
   background: var(--topbar);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
@@ -93,6 +94,9 @@ a:hover { opacity: 1; }
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   appearance: none;
   border: 1px solid var(--border);
   background: var(--btn-bg);
@@ -123,6 +127,7 @@ a:hover { opacity: 1; }
 .slide {
   width: min(1080px, 100%);
   max-height: calc(100vh - 130px);
+  max-height: calc(100svh - 130px);
   overflow: auto;
   padding: 34px 28px;
   background: var(--panel);
@@ -132,6 +137,9 @@ a:hover { opacity: 1; }
   transform: translateY(0);
   opacity: 1;
   transition: opacity 160ms ease, transform 160ms ease;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 .slide.is-transitioning {
   opacity: 0;
@@ -255,6 +263,37 @@ em { color: rgba(255, 255, 255, 0.9); }
   height: 3px;
   width: 100%;
   background: rgba(255, 255, 255, 0.07);
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 10px;
+  }
+  .topbar .right {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .lang-hint { display: none; }
+  .btn {
+    padding: 10px 10px;
+    border-radius: 12px;
+  }
+  .stage {
+    padding: 14px 12px 20px;
+  }
+  .slide {
+    max-height: calc(100svh - 170px);
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  ul, ol { margin-left: 20px; }
+  .counter {
+    right: 10px;
+    bottom: 10px;
+  }
 }
 .progress > div {
   height: 100%;
