@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drive Replay — 2026-01-30 → 2026-01-31</title>
+  <meta name="description" content="A map replay of a drive with photo moments along the route." />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg0: #05060a;
+      --bg1: #070a12;
+      --ink: rgba(240,246,255,.92);
+      --muted: rgba(240,246,255,.72);
+      --faint: rgba(240,246,255,.55);
+      --line: rgba(255,255,255,.10);
+      --glass: rgba(12,16,26,.62);
+      --glass2: rgba(6,8,14,.55);
+      --cyan: #6feaff;
+      --violet: #9c7cff;
+      --amber: #ffd48a;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0,0,0,.45);
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 900px at 15% 10%, rgba(156,124,255,.22), transparent 55%),
+                  radial-gradient(900px 700px at 70% 18%, rgba(111,234,255,.18), transparent 55%),
+                  radial-gradient(1000px 900px at 50% 110%, rgba(255,212,138,.10), transparent 50%),
+                  linear-gradient(180deg, var(--bg1), var(--bg0));
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .75;
+      background:
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(closest-side at 50% 35%, rgba(0,0,0,1), rgba(0,0,0,.0));
+      filter: blur(.2px);
+    }
+
+    .shell { height: 100%; display: grid; grid-template-rows: auto 1fr; }
+
+    header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .title {
+      display: grid;
+      gap: 2px;
+      line-height: 1.2;
+    }
+    .kicker {
+      letter-spacing: .12em;
+      font-size: 11px;
+      color: var(--faint);
+      text-transform: uppercase;
+    }
+    .headline {
+      font-size: 15px;
+      font-weight: 650;
+    }
+    .sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    header a { color: rgba(240,246,255,.86); text-decoration: none; }
+    header a:hover { text-decoration: underline; }
+
+    .wrap {
+      padding: 16px 18px;
+      height: 100%;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(900px 260px at 20% 0%, rgba(111,234,255,.22), transparent 60%),
+                  radial-gradient(900px 260px at 80% 0%, rgba(156,124,255,.18), transparent 60%);
+      opacity: .75;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .map-wrap { min-height: 0; }
+    #map { height: 100%; width: 100%; position: relative; z-index: 1; }
+
+    .panel {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      min-height: 0;
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(14px);
+    }
+
+    .controls {
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      z-index: 1;
+    }
+    .controls .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    button {
+      background: rgba(20,26,42,.62);
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 8px 11px;
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+    }
+    button:hover { border-color: rgba(111,234,255,.45); background: rgba(20,28,48,.70); }
+    button:active { transform: translateY(1px); }
+
+    .pill {
+      font-size: 12px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    input[type="range"] { width: min(520px, 100%); accent-color: var(--cyan); }
+    select {
+      background: rgba(14,18,30,.65);
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 7px 10px;
+    }
+    .meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; opacity: .95; }
+    .note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+    .preview { padding: 14px; border-bottom: 1px solid rgba(255,255,255,.08); position: relative; z-index: 1; }
+    .preview img {
+      width: 100%;
+      max-height: 42vh;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    .caption { margin-top: 9px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+    .caption a { color: rgba(111,234,255,.92); text-decoration: none; }
+    .caption a:hover { text-decoration: underline; }
+
+    .list { overflow: auto; position: relative; z-index: 1; }
+    .item { display: grid; grid-template-columns: auto 1fr; gap: 10px; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,.06); cursor: pointer; }
+    .item:hover { background: rgba(111,234,255,.07); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); margin-top: 4px; box-shadow: 0 0 0 6px rgba(111,234,255,.08); }
+    .time { font-size: 12px; opacity: .9; }
+    .file { font-size: 13px; color: var(--ink); }
+
+    @media (max-width: 980px) {
+      body { overflow: auto; }
+      .wrap { grid-template-columns: 1fr; height: auto; }
+      .map-wrap { height: 56vh; }
+      .panel { grid-template-rows: auto auto 44vh; }
+      .preview img { max-height: 28vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="shell">
+    <header>
+      <div class="top">
+        <div class="title">
+          <div class="kicker">Field Log · Route Playback</div>
+          <div class="headline">Drive Replay — 2026-01-30 17:30 → 2026-01-31 15:32 (Japan)</div>
+          <div class="sub">Scrub the timeline, follow the route, and open photo moments.</div>
+        </div>
+        <div><a href="/blogs/">← Back</a></div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="card map-wrap" aria-label="Drive map replay">
+        <div id="map" role="application" aria-label="Drive map replay"></div>
+      </section>
+
+      <aside class="card panel">
+      <div class="controls">
+        <div class="row">
+          <button id="btnPlay" type="button">Play</button>
+          <button id="btnRestart" type="button">Restart</button>
+          <span class="pill" id="clock">—</span>
+          <label class="pill" for="speed">Speed</label>
+          <select id="speed" aria-label="Playback speed">
+            <option value="90000">2×</option>
+            <option value="180000" selected>1×</option>
+            <option value="360000">0.5×</option>
+          </select>
+          <label class="pill" for="syncMode">Sync</label>
+          <select id="syncMode" aria-label="Sync mode">
+            <option value="time" selected>by time</option>
+            <option value="route">by route</option>
+          </select>
+        </div>
+        <div class="meta">
+          <input id="scrub" type="range" min="0" max="1000" value="0" />
+          <span class="pill" id="progress">0%</span>
+          <span class="pill" id="stats">—</span>
+        </div>
+        <div class="note" id="note">Loading…</div>
+      </div>
+
+      <div class="preview">
+        <img id="photoImg" alt="" loading="lazy" />
+        <div class="caption">
+          <div>
+            <div id="photoTime">—</div>
+            <div id="photoFile" style="opacity:.8;">—</div>
+          </div>
+          <div><a id="photoLink" href="#" style="color:#8ab4ff; text-decoration:none;">Open</a></div>
+        </div>
+      </div>
+
+      <div class="list" id="photoList" aria-label="Photos"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const baseUrl = new URL('.', window.location.href);
+    const assetUrl = (name) => new URL(name, baseUrl).toString();
+
+    const map = L.map('map', { zoomControl: true, preferCanvas: true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const fmtJST = new Intl.DateTimeFormat('ja-JP', {
+      timeZone: 'Asia/Tokyo',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+
+    function haversineM(lat1, lon1, lat2, lon2) {
+      const r = 6371000;
+      const toRad = (x) => x * Math.PI / 180;
+      const phi1 = toRad(lat1), phi2 = toRad(lat2);
+      const dphi = toRad(lat2 - lat1);
+      const dl = toRad(lon2 - lon1);
+      const a = Math.sin(dphi/2)**2 + Math.cos(phi1)*Math.cos(phi2)*Math.sin(dl/2)**2;
+      return 2 * r * Math.asin(Math.sqrt(a));
+    }
+
+    function cumulative(points) {
+      const out = [0];
+      let t = 0;
+      for (let i = 1; i < points.length; i++) {
+        const a = points[i-1], b = points[i];
+        t += haversineM(a.lat, a.lon, b.lat, b.lon);
+        out.push(t);
+      }
+      return out;
+    }
+
+    function pointAtProgress(points, cum, p) {
+      if (!points.length) return null;
+      const total = cum[cum.length - 1] || 0;
+      if (total <= 0) return points[0];
+      const d = Math.max(0, Math.min(1, p)) * total;
+      let lo = 0, hi = cum.length - 1;
+      while (lo < hi) {
+        const mid = Math.floor((lo + hi) / 2);
+        if (cum[mid] < d) lo = mid + 1;
+        else hi = mid;
+      }
+      const i = Math.max(1, lo);
+      const d0 = cum[i-1], d1 = cum[i];
+      const t = (d1 - d0) ? ((d - d0) / (d1 - d0)) : 0;
+      const a = points[i-1], b = points[i];
+      return { lat: a.lat + (b.lat - a.lat) * t, lon: a.lon + (b.lon - a.lon) * t };
+    }
+
+    function pointAtTimeMs(points, timesMs, targetMs) {
+      if (!points.length || !timesMs.length) return null;
+      if (targetMs <= timesMs[0]) return points[0];
+      const last = timesMs.length - 1;
+      if (targetMs >= timesMs[last]) return points[last];
+
+      let lo = 0, hi = last;
+      while (lo < hi) {
+        const mid = Math.floor((lo + hi) / 2);
+        if (timesMs[mid] < targetMs) lo = mid + 1;
+        else hi = mid;
+      }
+      const i = Math.max(1, lo);
+      const t0 = timesMs[i-1], t1 = timesMs[i];
+      const k = (t1 - t0) ? ((targetMs - t0) / (t1 - t0)) : 0;
+      const a = points[i-1], b = points[i];
+      return { lat: a.lat + (b.lat - a.lat) * k, lon: a.lon + (b.lon - a.lon) * k };
+    }
+
+    function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+
+    const state = {
+      ready: false,
+      playing: false,
+      sync: 'time',
+      speedMsPerSec: 180000,
+      start: null,
+      end: null,
+      durationMs: 0,
+      progress: 0,
+      points: [],
+      cum: [],
+      timesMs: [],
+      trackTimeStartMs: null,
+      trackTimeEndMs: null,
+      photos: [],
+      photoCursor: 0,
+      raf: null,
+      lastTick: null,
+      marker: null,
+      routeLine: null,
+      photoLayer: null,
+    };
+
+    function setProgress(p, { suppressPhotoTrigger = false } = {}) {
+      state.progress = clamp01(p);
+      $('scrub').value = Math.round(state.progress * 1000);
+      $('progress').textContent = `${Math.round(state.progress * 100)}%`;
+
+      const nowMs = state.start.getTime() + state.progress * state.durationMs;
+      $('clock').textContent = fmtJST.format(new Date(nowMs));
+
+      const pos = (state.sync === 'time' && state.timesMs.length)
+        ? pointAtTimeMs(state.points, state.timesMs, nowMs)
+        : pointAtProgress(state.points, state.cum, state.progress);
+      if (pos && state.marker) state.marker.setLatLng([pos.lat, pos.lon]);
+
+      if (!suppressPhotoTrigger) maybeTriggerPhotos();
+    }
+
+    function photoProgress(photo) {
+      return state.sync === 'route' ? (photo.snap?.progress ?? photo.timeProgress) : photo.timeProgress;
+    }
+
+    function maybeTriggerPhotos() {
+      while (state.photoCursor < state.photos.length) {
+        const p = state.photos[state.photoCursor];
+        if (photoProgress(p) <= state.progress + 1e-9) {
+          showPhoto(p, { pan: true });
+          state.photoCursor++;
+        } else break;
+      }
+    }
+
+    function resetPhotoCursor() {
+      state.photoCursor = 0;
+      while (state.photoCursor < state.photos.length && photoProgress(state.photos[state.photoCursor]) < state.progress) {
+        state.photoCursor++;
+      }
+    }
+
+    function showPhoto(p, { pan = false } = {}) {
+      const src = assetUrl(p.file);
+      $('photoImg').src = src;
+      $('photoImg').alt = p.file;
+      $('photoTime').textContent = fmtJST.format(new Date(p.time));
+      $('photoFile').textContent = p.file;
+      $('photoLink').href = src;
+      if (pan) map.panTo([p.lat, p.lon], { animate: true, duration: 0.6 });
+    }
+
+      function tick(ts) {
+        if (!state.playing) return;
+        if (state.lastTick == null) state.lastTick = ts;
+        const dt = ts - state.lastTick;
+        state.lastTick = ts;
+
+      const dp = (dt * state.speedMsPerSec) / state.durationMs;
+      const next = state.progress + dp;
+      if (next >= 1) {
+        setProgress(1);
+        state.playing = false;
+        $('btnPlay').textContent = 'Play';
+        state.lastTick = null;
+        return;
+      }
+      setProgress(next);
+      state.raf = requestAnimationFrame(tick);
+    }
+
+    function playPause() {
+      state.playing = !state.playing;
+      $('btnPlay').textContent = state.playing ? 'Pause' : 'Play';
+      $('btnPlay').setAttribute('aria-pressed', state.playing ? 'true' : 'false');
+      state.lastTick = null;
+      if (state.playing) state.raf = requestAnimationFrame(tick);
+      else if (state.raf) cancelAnimationFrame(state.raf);
+    }
+
+    function restart() {
+      state.playing = false;
+      $('btnPlay').textContent = 'Play';
+      $('btnPlay').setAttribute('aria-pressed', 'false');
+      if (state.raf) cancelAnimationFrame(state.raf);
+      state.lastTick = null;
+      state.photoCursor = 0;
+      setProgress(0, { suppressPhotoTrigger: true });
+    }
+
+    function renderPhotoList() {
+      const list = $('photoList');
+      list.innerHTML = '';
+      state.photos.forEach((p) => {
+        const row = document.createElement('div');
+        row.className = 'item';
+        row.addEventListener('click', () => {
+          const target = photoProgress(p);
+          setProgress(target, { suppressPhotoTrigger: true });
+          resetPhotoCursor();
+          showPhoto(p, { pan: true });
+        });
+
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        row.appendChild(dot);
+
+        const text = document.createElement('div');
+        const t = document.createElement('div');
+        t.className = 'time';
+        t.textContent = fmtJST.format(new Date(p.time));
+        const f = document.createElement('div');
+        f.className = 'file';
+        f.textContent = p.file;
+        text.appendChild(t);
+        text.appendChild(f);
+        row.appendChild(text);
+
+        list.appendChild(row);
+      });
+    }
+
+    async function init() {
+      const driveJsonUrl = assetUrl('drive.json');
+      const res = await fetch(driveJsonUrl, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} loading ${driveJsonUrl}`);
+      const data = await res.json();
+
+      state.start = new Date(data.driveStart);
+      state.end = new Date(data.driveEnd);
+      state.durationMs = state.end.getTime() - state.start.getTime();
+
+      state.points = data.track;
+      state.cum = cumulative(state.points);
+      state.timesMs = state.points.map(p => p.t ? new Date(p.t).getTime() : NaN).filter(Number.isFinite);
+      state.trackTimeStartMs = (data.stats?.trackTimeStart) ? new Date(data.stats.trackTimeStart).getTime() : null;
+      state.trackTimeEndMs = (data.stats?.trackTimeEnd) ? new Date(data.stats.trackTimeEnd).getTime() : null;
+      state.photos = (data.photos || []).slice().sort((a, b) => a.time.localeCompare(b.time));
+
+      $('stats').textContent = `${data.stats.trackPoints} pts · ${(data.stats.trackDistanceM/1000).toFixed(1)} km · ${data.stats.photosInWindow} photos`;
+      const firstPhoto = state.photos[0]?.time ? fmtJST.format(new Date(state.photos[0].time)) : '—';
+      const lastPhoto = state.photos[state.photos.length - 1]?.time ? fmtJST.format(new Date(state.photos[state.photos.length - 1].time)) : '—';
+      const trimLabel = data.trim?.enabled
+        ? (data.trim?.method === 'positionsCsvTimeWindow' ? 'Track: positions.csv (timestamped)' :
+           (data.trim?.method === 'kmlTimeRangeLinear' ? `Trim: KML time-range (${data.trim?.kmlTZ})` : 'Trim: photo anchors'))
+        : 'Trim: none';
+      const trackCoverage = (state.trackTimeStartMs && state.trackTimeEndMs)
+        ? `Track: ${fmtJST.format(new Date(state.trackTimeStartMs))} → ${fmtJST.format(new Date(state.trackTimeEndMs))}.`
+        : '';
+      const missingTail = (state.trackTimeEndMs && state.trackTimeEndMs < state.end.getTime() - 60_000)
+        ? `Missing fixes after ${fmtJST.format(new Date(state.trackTimeEndMs))}.`
+        : '';
+      $('note').textContent = `${trimLabel}. ${trackCoverage} ${missingTail} Photos: ${firstPhoto} → ${lastPhoto}. Shortcuts: Space play/pause, R restart.`;
+
+      const latlngs = state.points.map(p => [p.lat, p.lon]);
+      state.routeLine = L.polyline(latlngs, { color: '#8ab4ff', weight: 3, opacity: 0.85 }).addTo(map);
+      map.fitBounds(state.routeLine.getBounds(), { padding: [18, 18] });
+
+      const startPos = pointAtProgress(state.points, state.cum, 0) || state.points[0];
+      state.marker = L.circleMarker([startPos.lat, startPos.lon], { radius: 6, color: '#9ef5ff', weight: 2, fillColor: '#9ef5ff', fillOpacity: 0.7 }).addTo(map);
+
+      state.photoLayer = L.layerGroup().addTo(map);
+      state.photos.forEach((p) => {
+        const m = L.circleMarker([p.lat, p.lon], { radius: 4, color: '#ffd48a', weight: 2, fillColor: '#ffd48a', fillOpacity: 0.8 });
+        m.on('click', () => {
+          const target = photoProgress(p);
+          setProgress(target, { suppressPhotoTrigger: true });
+          resetPhotoCursor();
+          showPhoto(p, { pan: false });
+        });
+        m.addTo(state.photoLayer);
+      });
+
+      renderPhotoList();
+      setProgress(0, { suppressPhotoTrigger: true });
+      if (state.photos.length) showPhoto(state.photos[0], { pan: false });
+      state.ready = true;
+    }
+
+    $('btnPlay').addEventListener('click', () => state.ready && playPause());
+    $('btnRestart').addEventListener('click', () => state.ready && restart());
+    $('scrub').addEventListener('input', (e) => {
+      if (!state.ready) return;
+      state.playing = false;
+      $('btnPlay').textContent = 'Play';
+      $('btnPlay').setAttribute('aria-pressed', 'false');
+      if (state.raf) cancelAnimationFrame(state.raf);
+      state.lastTick = null;
+      setProgress(Number(e.target.value) / 1000, { suppressPhotoTrigger: true });
+      resetPhotoCursor();
+    });
+    $('speed').addEventListener('change', (e) => {
+      if (!state.ready) return;
+      const v = Number(e.target.value);
+      if (Number.isFinite(v) && v > 0) state.speedMsPerSec = v;
+    });
+    $('syncMode').addEventListener('change', (e) => {
+      if (!state.ready) return;
+      state.sync = e.target.value;
+      $('note').textContent = state.sync === 'route'
+        ? 'Sync: photos trigger when marker reaches the snapped point along the route.'
+        : 'Sync: photos trigger at their EXIF time (mapped across the drive window).';
+      resetPhotoCursor();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!state.ready) return;
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        playPause();
+      } else if (e.key === 'r' || e.key === 'R') {
+        restart();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const step = 10 / 1000; // 1% (scrub is 0..1000)
+        setProgress(state.progress - step, { suppressPhotoTrigger: true });
+        resetPhotoCursor();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const step = 10 / 1000;
+        setProgress(state.progress + step, { suppressPhotoTrigger: true });
+        resetPhotoCursor();
+      }
+    }, { passive: false });
+
+    init().catch((err) => {
+      console.error(err);
+      $('note').textContent = `Failed to load drive.json: ${err?.message || err}`;
+    });
+  </script>
+</body>
+</html>
