@@ -3,213 +3,191 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#20271f">
-  <meta name="description" content="Leader guide for The Seduction of Success, based on Counterfeit Gods chapter 4 and 2 Kings 5.">
+  <meta name="theme-color" content="#20291f">
+  <meta name="description" content="A bilingual preparation and live facilitation guide for The Seduction of Success.">
+  <meta property="og:title" content="Leader Guide | The Seduction of Success">
+  <meta property="og:description" content="Prepare and lead a 60-minute study of Counterfeit Gods, Chapter 4">
   <title>Leader Guide | The Seduction of Success</title>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        var query = new URLSearchParams(location.search).get("lang");
+        lang = query === "ja" || query === "en" ? query : (localStorage.getItem("cfg-language") || "en");
+      } catch (_) {}
+      if (lang === "ja") {
+        document.documentElement.lang = "ja";
+        document.documentElement.dataset.lang = "ja";
+        document.documentElement.classList.add("i18n-pending");
+      }
+    }());
+  </script>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/leader.css">
+  <script src="js/i18n.js" defer></script>
   <script src="js/leader.js" defer></script>
+  <noscript><style>html body{visibility:visible!important}</style></noscript>
 </head>
-<body class="leader-page">
+<body class="leader-page" data-page="leader">
+  <a class="skip-link" href="#main-content" data-i18n="a11y.skip">Skip to content</a>
   <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
   <header class="topbar leader-topbar">
-    <a class="brand" href="#top" aria-label="Back to the beginning">
-      <span class="brand-mark">L</span>
-      <span>Leader Guide</span>
+    <a class="brand" href="#top" data-i18n-aria="a11y.backTop" aria-label="Back to the beginning">
+      <span class="brand-mark leader-mark" aria-hidden="true">L</span>
+      <span class="brand-name" data-i18n="leader.label">Leader guide</span>
     </a>
-    <a class="group-link" href="index.html">Group page ↗</a>
+    <div class="topbar-actions">
+      <a class="role-link" href="index.html" data-lang-link data-i18n="common.groupGuide">Group guide</a>
+      <button class="lang-button" id="lang-button" type="button" data-i18n-aria="language.switchJa" aria-label="Switch to Japanese">日本語</button>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="leader-hero section">
-      <div>
-        <p class="eyebrow">Counterfeit Gods · Chapter 4</p>
-        <h1>The Seduction<br>of <em>Success</em></h1>
-        <p class="leader-deck">Everything you need to understand the lesson, guide the conversation, and keep the group moving toward grace.</p>
-        <div class="hero-meta">
-          <span>2 Kings 5:1–16</span>
-          <span>About 60 minutes</span>
+  <main id="main-content">
+    <section class="leader-hero section" id="top" aria-labelledby="leader-title">
+      <div class="river-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="leader-hero-inner">
+        <div>
+          <p class="eyebrow" data-i18n="leader.chapter">Counterfeit Gods · Chapter 4</p>
+          <h1 id="leader-title"><span data-i18n="title.line1">The Seduction</span><span><small data-i18n="title.of">of</small> <em data-i18n="title.success">Success</em></span></h1>
+          <p class="leader-deck" data-i18n="leader.deck">Everything you need to understand the lesson, guide the conversation, and keep the group moving toward grace.</p>
+          <div class="hero-meta" aria-label="Lesson details" data-i18n-aria="a11y.lessonDetails"><span data-i18n="ref.kings">2 Kings 5:1–16</span><span data-i18n="common.sixtyMinutes">60 minutes</span></div>
         </div>
+        <button class="lead-now-button" id="live-open" type="button"><span><small data-i18n="leader.ready">Ready to begin?</small><strong data-i18n="leader.leadNow">Lead now</strong></span><b aria-hidden="true">→</b></button>
       </div>
     </section>
 
-    <nav class="jump-nav" aria-label="Leader guide sections">
-      <a href="#overview">Overview</a>
-      <a href="#prepare">Prepare</a>
-      <a href="#run">Run it</a>
-      <a href="#answers">Prompts</a>
-      <a href="#pastoral">Care</a>
+    <nav class="jump-nav" aria-label="Leader guide sections" data-i18n-aria="a11y.leaderSections">
+      <div class="jump-nav-track">
+        <a href="#overview" data-i18n="leader.navOverview">Overview</a>
+        <a href="#schedule" data-i18n="leader.navSchedule">Run sheet</a>
+        <a href="#prepare" data-i18n="leader.navPrepare">Prepare</a>
+        <a href="#run" data-i18n="leader.navRun">Facilitate</a>
+        <a href="#answers" data-i18n="leader.navQuestions">Question help</a>
+        <a href="#pastoral" data-i18n="leader.navCare">Lead with care</a>
+      </div>
     </nav>
 
-    <section class="section leader-section" id="overview">
-      <p class="eyebrow">Start here</p>
-      <h2>What this lesson is about</h2>
-      <div class="leader-summary">
-        <p>Success is not the enemy. Work, skill, responsibility, and fruitful achievement are good gifts from God. Success becomes a counterfeit god when we rely on it to establish our identity, guarantee our security, or earn God’s favor.</p>
+    <section class="section leader-section paper-section" id="overview">
+      <div class="section-shell">
+        <p class="eyebrow" data-i18n="leader.startHere">Start here</p>
+        <h2 data-i18n="leader.overviewTitle">What this lesson is about</h2>
+        <div class="leader-summary"><p data-i18n="leader.summary">Success is not the enemy. Work, skill, responsibility, and fruitful achievement are good gifts from God. Success becomes a counterfeit god when we rely on it to establish our identity, guarantee our security, or earn God’s favor.</p></div>
+        <div class="leader-grid">
+          <article><span class="mini-label" data-i18n="leader.mainIdea">Main idea</span><p data-i18n="opening.idea">Achievement can describe what we have done. It cannot tell us who we are or what we are worth.</p></article>
+          <article><span class="mini-label" data-i18n="leader.gospelMovement">Gospel movement</span><p data-i18n="leader.gospelBody">We move from proving ourselves through performance to receiving an identity secured by Jesus.</p></article>
+          <article><span class="mini-label" data-i18n="leader.desiredResponse">Desired response</span><p data-i18n="leader.responseBody">Participants recognize where success controls them and practice faithful work without using it as a verdict on their value.</p></article>
+        </div>
+        <aside class="not-this"><strong data-i18n="leader.doNotTeach">Do not teach:</strong><p data-i18n="leader.doNotBody">“Ambition is bad,” “failure is more spiritual,” or “Christians should not pursue excellence.” The issue is not whether we achieve, but what we expect achievement to give us.</p></aside>
       </div>
+    </section>
 
-      <div class="leader-grid">
-        <article>
-          <span class="mini-label">Main idea</span>
-          <p>Achievement can describe what we have done. It cannot tell us who we are or what we are worth.</p>
-        </article>
-        <article>
-          <span class="mini-label">Gospel movement</span>
-          <p>We move from proving ourselves through performance to receiving an identity secured by Jesus.</p>
-        </article>
-        <article>
-          <span class="mini-label">Desired response</span>
-          <p>Participants recognize where success controls them and practice faithful work without using it as a verdict on their value.</p>
-        </article>
-      </div>
-
-      <div class="not-this">
-        <strong>Do not teach:</strong>
-        <p>“Ambition is bad,” “failure is more spiritual,” or “Christians should not pursue excellence.” The issue is not whether we achieve, but what we expect achievement to give us.</p>
+    <section class="section leader-section schedule-section" id="schedule">
+      <div class="section-shell">
+        <div class="schedule-heading"><div><p class="eyebrow" data-i18n="leader.atGlance">At a glance</p><h2 data-i18n="leader.sixtyRunSheet">Your 60-minute run sheet</h2></div><button class="compact-live-button" type="button" data-open-live><span data-i18n="leader.startTimer">Start live timer</span><b aria-hidden="true">▶</b></button></div>
+        <ol class="schedule-track">
+          <li><a href="#lead-opening"><span>01</span><div><strong data-i18n="nav.opening">Opening</strong><small data-i18n="time.six">6 minutes</small></div></a></li>
+          <li><a href="#lead-roots"><span>02</span><div><strong data-i18n="nav.gift">The gift</strong><small data-i18n="time.six">6 minutes</small></div></a></li>
+          <li><a href="#lead-story"><span>03</span><div><strong data-i18n="nav.story">Naaman</strong><small data-i18n="time.fourteen">14 minutes</small></div></a></li>
+          <li><a href="#lead-diagnosis"><span>04</span><div><strong data-i18n="nav.diagnosis">Diagnosis</strong><small data-i18n="time.eight">8 minutes</small></div></a></li>
+          <li><a href="#lead-grace"><span>05</span><div><strong data-i18n="nav.grace">Grace</strong><small data-i18n="time.ten">10 minutes</small></div></a></li>
+          <li><a href="#lead-discuss"><span>06</span><div><strong data-i18n="nav.discussion">Discussion</strong><small data-i18n="time.twelve">12 minutes</small></div></a></li>
+          <li><a href="#lead-practice"><span>07</span><div><strong data-i18n="nav.practice">Practice</strong><small data-i18n="time.four">4 minutes</small></div></a></li>
+        </ol>
       </div>
     </section>
 
     <section class="section leader-section shade-section" id="prepare">
-      <p class="eyebrow">Before the group</p>
-      <h2>Prepare your own heart first</h2>
-      <ol class="prep-list">
-        <li><span>1</span><div><strong>Read 2 Kings 5:1–16 slowly.</strong><p>Notice every reference to status, wealth, servants, power, anger, humility, and receiving.</p></div></li>
-        <li><span>2</span><div><strong>Name your own pressure point.</strong><p>Where are you tempted to prove yourself—as a leader, worker, parent, student, or Christian?</p></div></li>
-        <li><span>3</span><div><strong>Prepare one honest example.</strong><p>Share briefly enough to open the room, but do not make the discussion about you.</p></div></li>
-        <li><span>4</span><div><strong>Pray for safety and conviction.</strong><p>Ask God to expose false identities without producing shame or competitive confession.</p></div></li>
-      </ol>
-
-      <div class="key-characters">
-        <h3>Know the people in the story</h3>
-        <div>
-          <article><strong>Naaman</strong><p>Powerful and accomplished, yet unable to solve his deepest need. He initially approaches God through status, wealth, and control.</p></article>
-          <article><strong>The servant girl</strong><p>Socially powerless and deeply wronged, yet she compassionately points her enemy toward healing.</p></article>
-          <article><strong>The kings</strong><p>They assume the solution must flow through political authority. The king of Israel knows that human power cannot give life.</p></article>
-          <article><strong>Elisha</strong><p>Refuses to perform for Naaman or accept payment, protecting the truth that healing is God’s gift.</p></article>
-          <article><strong>Naaman’s servants</strong><p>Help him see that his pride—not the difficulty of the command—is keeping him from receiving.</p></article>
+      <div class="section-shell">
+        <p class="eyebrow" data-i18n="leader.beforeGroup">Before the group</p>
+        <h2 data-i18n="leader.prepareHeart">Prepare your own heart first</h2>
+        <ol class="prep-list">
+          <li><span aria-hidden="true">1</span><div><strong data-i18n="leader.prep1Title">Read 2 Kings 5:1–16 slowly.</strong><p data-i18n="leader.prep1Body">Notice every reference to status, wealth, servants, power, anger, humility, and receiving.</p></div></li>
+          <li><span aria-hidden="true">2</span><div><strong data-i18n="leader.prep2Title">Name your own pressure point.</strong><p data-i18n="leader.prep2Body">Where are you tempted to prove yourself—as a leader, worker, parent, student, or Christian?</p></div></li>
+          <li><span aria-hidden="true">3</span><div><strong data-i18n="leader.prep3Title">Prepare one honest example.</strong><p data-i18n="leader.prep3Body">Share briefly enough to open the room, but do not make the discussion about you.</p></div></li>
+          <li><span aria-hidden="true">4</span><div><strong data-i18n="leader.prep4Title">Pray for safety and conviction.</strong><p data-i18n="leader.prep4Body">Ask God to expose false identities without producing shame or competitive confession.</p></div></li>
+        </ol>
+        <div class="key-characters">
+          <h3 data-i18n="leader.characters">Know the people in the story</h3>
+          <div>
+            <article><strong data-i18n="character.naaman">Naaman</strong><p data-i18n="character.naamanBody">Powerful and accomplished, yet unable to solve his deepest need. He initially approaches God through status, wealth, and control.</p></article>
+            <article><strong data-i18n="character.girl">The servant girl</strong><p data-i18n="character.girlBody">Socially powerless and deeply wronged, yet she compassionately points her enemy toward healing.</p></article>
+            <article><strong data-i18n="character.kings">The kings</strong><p data-i18n="character.kingsBody">They assume the solution must flow through political authority. The king of Israel knows that human power cannot give life.</p></article>
+            <article><strong data-i18n="character.elisha">Elisha</strong><p data-i18n="character.elishaBody">Refuses to perform for Naaman or accept payment, protecting the truth that healing is God’s gift.</p></article>
+            <article><strong data-i18n="character.servants">Naaman’s servants</strong><p data-i18n="character.servantsBody">Help him see that his pride—not the difficulty of the command—is keeping him from receiving.</p></article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section leader-section" id="run">
-      <p class="eyebrow">Facilitation plan</p>
-      <h2>How to run the lesson</h2>
-      <div class="run-sheet">
-        <details open>
-          <summary><span>01</span><div><strong>Opening conversation</strong><small>8 minutes</small></div></summary>
-          <div class="detail-body">
-            <p><strong>Ask:</strong> “When you imagine a successful person, what do you picture—and what do you assume that person feels inside?”</p>
-            <p><strong>Listen for:</strong> Money, influence, career, family, recognition, freedom, confidence, safety, control, and belonging.</p>
-            <p><strong>Transition:</strong> “Those are not all bad desires. Tonight we are asking what happens when success must carry the weight of our identity.”</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><span>02</span><div><strong>The goodness of work</strong><small>7 minutes</small></div></summary>
-          <div class="detail-body">
-            <p>Summarize Genesis 1:26–28. God created human beings to cultivate and exercise responsibility. Achievement is not automatically idolatry.</p>
-            <p><strong>Key distinction:</strong> “I use my abilities faithfully” versus “My abilities prove my value.”</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><span>03</span><div><strong>Read Naaman’s story</strong><small>15 minutes</small></div></summary>
-          <div class="detail-body">
-            <p>Assign the narrator, servant girl, king, messenger, Naaman, and Naaman’s servants. Reading in parts helps phone users follow the long passage.</p>
-            <p>Trace four movements: accomplished but powerless; looking to power; offended by simplicity; healed by receiving.</p>
-            <p><strong>Do not rush Naaman’s anger.</strong> It exposes a worldview in which important people receive impressive treatment and valuable outcomes are earned through impressive actions.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><span>04</span><div><strong>Personal diagnosis</strong><small>10 minutes</small></div></summary>
-          <div class="detail-body">
-            <p>Give the group quiet time with the five diagnostic boxes. Tell them they will not be asked to report which boxes they checked.</p>
-            <p>Invite one observation: “Which description seems most common in our culture?” This allows honesty without forced disclosure.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><span>05</span><div><strong>Barter and grace</strong><small>10 minutes</small></div></summary>
-          <div class="detail-body">
-            <p>Explain the barter system: “If I perform, God and others owe me.” Grace dismantles this logic because God’s gifts cannot be purchased and salvation is received through Christ.</p>
-            <p>Use 1 Corinthians 4:7 and James 1:17 to reframe abilities and opportunities as gifts.</p>
-            <p><strong>Gospel connection:</strong> Naaman wanted to do a great thing. Christians rest because Jesus has already done the saving work.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><span>06</span><div><strong>Discussion and prayer</strong><small>15–20 minutes</small></div></summary>
-          <div class="detail-body">
-            <p>Choose three questions if time is short. Questions 1, 3, and 5 give the clearest progression from diagnosis to grace.</p>
-            <p>End with one concrete weekly practice and the prayer provided on the group page.</p>
-          </div>
-        </details>
+    <section class="section leader-section paper-section" id="run">
+      <div class="section-shell">
+        <p class="eyebrow" data-i18n="leader.facilitationPlan">Facilitation plan</p>
+        <h2 data-i18n="leader.runTitle">How to run the lesson</h2>
+        <div class="run-sheet">
+          <details id="lead-opening" open><summary><span>01</span><div><strong data-i18n="nav.opening">Opening conversation</strong><small data-i18n="time.six">6 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p><strong data-i18n="leader.ask">Ask:</strong> <span data-i18n="opening.prompt">“When you imagine a successful person, what do you picture—and what do you assume that person feels inside?”</span></p><p><strong data-i18n="leader.listenFor">Listen for:</strong> <span data-i18n="leader.openListen">Money, influence, career, family, recognition, freedom, confidence, safety, control, and belonging.</span></p><p><strong data-i18n="leader.transition">Transition:</strong> <span data-i18n="leader.openTransition">“Those are not all bad desires. Tonight we are asking what happens when success must carry the weight of our identity.”</span></p></div></details>
+          <details id="lead-roots"><summary><span>02</span><div><strong data-i18n="leader.goodnessWork">The goodness of work</strong><small data-i18n="time.six">6 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.rootsNote">Summarize Genesis 1:26–28. God created human beings to cultivate and exercise responsibility. Achievement is not automatically idolatry.</p><p><strong data-i18n="leader.keyDistinction">Key distinction:</strong> <span data-i18n="leader.distinctionBody">“I use my abilities faithfully” versus “My abilities prove my value.”</span></p></div></details>
+          <details id="lead-story"><summary><span>03</span><div><strong data-i18n="leader.readStory">Read Naaman’s story</strong><small data-i18n="time.fourteen">14 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.storyAssign">Assign the narrator, servant girl, king, messenger, Naaman, and Naaman’s servants. Reading in parts helps phone users follow the long passage.</p><p data-i18n="leader.storyMovements">Trace four movements: accomplished but powerless; looking to power; offended by simplicity; healed by receiving.</p><p><strong data-i18n="leader.doNotRush">Do not rush Naaman’s anger.</strong> <span data-i18n="leader.angerBody">It exposes a worldview in which important people receive impressive treatment and valuable outcomes are earned through impressive actions.</span></p></div></details>
+          <details id="lead-diagnosis"><summary><span>04</span><div><strong data-i18n="leader.personalDiagnosis">Personal diagnosis</strong><small data-i18n="time.eight">8 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.diagnosisNote">Give the group quiet time with the five diagnostic boxes. Tell them they will not be asked to report which boxes they checked.</p><p data-i18n="leader.diagnosisInvite">Invite one observation: “Which description seems most common in our culture?” This allows honesty without forced disclosure.</p></div></details>
+          <details id="lead-grace"><summary><span>05</span><div><strong data-i18n="leader.barterGrace">Barter and grace</strong><small data-i18n="time.ten">10 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.barterNote">Explain the barter system: “If I perform, God and others owe me.” Grace dismantles this logic because God’s gifts cannot be purchased and salvation is received through Christ.</p><p data-i18n="leader.giftNote">Use 1 Corinthians 4:7 and James 1:17 to reframe abilities and opportunities as gifts.</p><p><strong data-i18n="leader.gospelConnection">Gospel connection:</strong> <span data-i18n="leader.gospelNote">Naaman wanted to do a great thing. Christians rest because Jesus has already done the saving work.</span></p></div></details>
+          <details id="lead-discuss"><summary><span>06</span><div><strong data-i18n="leader.discussionStep">Discussion</strong><small data-i18n="time.twelve">12 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.discussionNote">Choose three questions if time is short. Questions 1, 3, and 5 give the clearest progression from diagnosis to grace.</p><p data-i18n="leader.silenceNote">Allow a few seconds of silence after each question. Do not answer for the group too quickly.</p></div></details>
+          <details id="lead-practice"><summary><span>07</span><div><strong data-i18n="leader.responsePrayer">Response and prayer</strong><small data-i18n="time.four">4 minutes</small></div><i aria-hidden="true"></i></summary><div class="detail-body"><p data-i18n="leader.practiceNote">Invite each person to choose one concrete weekly practice. Close with the prayer provided on the group page.</p></div></details>
+        </div>
       </div>
     </section>
 
     <section class="section leader-section answers-section" id="answers">
-      <p class="eyebrow">Conversation help</p>
-      <h2>Where the questions can go</h2>
-      <p class="section-intro">These are directions, not model answers. Let participants discover the text before you fill the silence.</p>
-
-      <div class="answer-cards">
-        <article>
-          <span>Question 1</span>
-          <h3>What lies beneath the desire to succeed?</h3>
-          <p>Common roots include fear of insignificance, desire for parental approval, financial insecurity, comparison, shame, control, or longing to belong to an admired group.</p>
-          <p class="follow-up"><strong>Try:</strong> “What do you fear success would protect you from?”</p>
-        </article>
-        <article>
-          <span>Question 2</span>
-          <h3>When does accomplishment become worth?</h3>
-          <p>Look for emotional dependence: inability to rest, disproportionate collapse after failure, resentment of others’ success, neglect of relationships, or uncertainty about identity without a role.</p>
-          <p class="follow-up"><strong>Try:</strong> “How can you tell the difference between disappointment and devastation?”</p>
-        </article>
-        <article>
-          <span>Question 3</span>
-          <h3>How do we barter with God?</h3>
-          <p>We may assume morality, ministry, generosity, or disciplined habits should purchase protection and prosperity. When hardship comes, entitlement or condemnation exposes the bargain we thought existed.</p>
-          <p class="follow-up"><strong>Try:</strong> “When have you silently thought, ‘After all I have done, this should not happen to me’?”</p>
-        </article>
-        <article>
-          <span>Question 4</span>
-          <h3>What must Naaman surrender?</h3>
-          <p>His status, preferred method, demand for special treatment, belief that payment creates leverage, and need to turn healing into an accomplishment.</p>
-          <p class="follow-up"><strong>Try:</strong> “Why is receiving sometimes more humbling than achieving?”</p>
-        </article>
-        <article>
-          <span>Question 5</span>
-          <h3>How does Jesus free us to pursue excellence?</h3>
-          <p>In Christ, work no longer has to justify our existence. We can work from acceptance rather than for acceptance, admit limitations, celebrate others, survive failure, rest, and serve where no one applauds.</p>
-          <p class="follow-up"><strong>Try:</strong> “What might you do differently this week if your worth were not at stake?”</p>
-        </article>
+      <div class="section-shell">
+        <p class="eyebrow" data-i18n="leader.conversationHelp">Conversation help</p>
+        <h2 data-i18n="leader.questionsGo">Where the questions can go</h2>
+        <p class="section-intro" data-i18n="leader.notModels">These are directions, not model answers. Let participants discover the text before you fill the silence.</p>
+        <div class="answer-cards">
+          <article><span><span data-i18n="leader.question">Question</span> 1</span><h3 data-i18n="leader.a1Title">What lies beneath the desire to succeed?</h3><p data-i18n="leader.a1Body">Common roots include fear of insignificance, desire for parental approval, financial insecurity, comparison, shame, control, or longing to belong to an admired group.</p><p class="follow-up"><strong data-i18n="leader.try">Try:</strong> <span data-i18n="leader.a1Try">“What do you fear success would protect you from?”</span></p></article>
+          <article><span><span data-i18n="leader.question">Question</span> 2</span><h3 data-i18n="leader.a2Title">When does accomplishment become worth?</h3><p data-i18n="leader.a2Body">Look for emotional dependence: inability to rest, disproportionate collapse after failure, resentment of others’ success, neglect of relationships, or uncertainty about identity without a role.</p><p class="follow-up"><strong data-i18n="leader.try">Try:</strong> <span data-i18n="leader.a2Try">“How can you tell the difference between disappointment and devastation?”</span></p></article>
+          <article><span><span data-i18n="leader.question">Question</span> 3</span><h3 data-i18n="leader.a3Title">How do we barter with God?</h3><p data-i18n="leader.a3Body">We may assume morality, ministry, generosity, or disciplined habits should purchase protection and prosperity. When hardship comes, entitlement or condemnation exposes the bargain we thought existed.</p><p class="follow-up"><strong data-i18n="leader.try">Try:</strong> <span data-i18n="leader.a3Try">“When have you silently thought, ‘After all I have done, this should not happen to me’?”</span></p></article>
+          <article><span><span data-i18n="leader.question">Question</span> 4</span><h3 data-i18n="leader.a4Title">What must Naaman surrender?</h3><p data-i18n="leader.a4Body">His status, preferred method, demand for special treatment, belief that payment creates leverage, and need to turn healing into an accomplishment.</p><p class="follow-up"><strong data-i18n="leader.try">Try:</strong> <span data-i18n="leader.a4Try">“Why is receiving sometimes more humbling than achieving?”</span></p></article>
+          <article><span><span data-i18n="leader.question">Question</span> 5</span><h3 data-i18n="leader.a5Title">How does Jesus free us to pursue excellence?</h3><p data-i18n="leader.a5Body">In Christ, work no longer has to justify our existence. We can work from acceptance rather than for acceptance, admit limitations, celebrate others, survive failure, rest, and serve where no one applauds.</p><p class="follow-up"><strong data-i18n="leader.try">Try:</strong> <span data-i18n="leader.a5Try">“What might you do differently this week if your worth were not at stake?”</span></p></article>
+        </div>
       </div>
     </section>
 
     <section class="section leader-section pastoral-section" id="pastoral">
-      <p class="eyebrow">Lead with care</p>
-      <h2>Watch for these dynamics</h2>
-      <div class="care-list">
-        <article><span>01</span><div><strong>Shame</strong><p>Do not turn the diagnostic list into another performance test. Conviction says, “This has been controlling me.” Shame says, “I am worthless.” Keep pointing to received grace.</p></div></article>
-        <article><span>02</span><div><strong>Different life circumstances</strong><p>Success pressure appears in school, parenting, ministry, relationships, appearance, immigration, retirement, and caregiving—not only prestigious careers.</p></div></article>
-        <article><span>03</span><div><strong>Suffering</strong><p>Avoid implying that every setback is God correcting an idol. The chapter challenges the belief that good performance guarantees an easy life.</p></div></article>
-        <article><span>04</span><div><strong>Over-disclosure</strong><p>Do not force public confession. Offer quiet reflection, allow people to pass, and follow up privately when someone shares something tender.</p></div></article>
-        <article><span>05</span><div><strong>Anti-achievement reactions</strong><p>Grace does not produce passivity. It redirects motivation: faithful work becomes gratitude and service rather than self-salvation.</p></div></article>
-      </div>
-
-      <div class="leader-close">
-        <p class="mini-label">One sentence to remember</p>
-        <blockquote>Work hard, but do not ask your work to tell you who you are.</blockquote>
-        <a href="index.html">Open the group page →</a>
+      <div class="section-shell">
+        <p class="eyebrow" data-i18n="leader.leadCare">Lead with care</p>
+        <h2 data-i18n="leader.watchDynamics">Watch for these dynamics</h2>
+        <div class="care-list">
+          <article><span aria-hidden="true">01</span><div><strong data-i18n="care.shame">Shame</strong><p data-i18n="care.shameBody">Do not turn the diagnostic list into another performance test. Conviction says, “This has been controlling me.” Shame says, “I am worthless.” Keep pointing to received grace.</p></div></article>
+          <article><span aria-hidden="true">02</span><div><strong data-i18n="care.circumstances">Different life circumstances</strong><p data-i18n="care.circumstancesBody">Success pressure appears in school, parenting, ministry, relationships, appearance, immigration, retirement, and caregiving—not only prestigious careers.</p></div></article>
+          <article><span aria-hidden="true">03</span><div><strong data-i18n="care.suffering">Suffering</strong><p data-i18n="care.sufferingBody">Avoid implying that every setback is God correcting an idol. The chapter challenges the belief that good performance guarantees an easy life.</p></div></article>
+          <article><span aria-hidden="true">04</span><div><strong data-i18n="care.disclosure">Over-disclosure</strong><p data-i18n="care.disclosureBody">Do not force public confession. Offer quiet reflection, allow people to pass, and follow up privately when someone shares something tender.</p></div></article>
+          <article><span aria-hidden="true">05</span><div><strong data-i18n="care.antiAchievement">Anti-achievement reactions</strong><p data-i18n="care.antiAchievementBody">Grace does not produce passivity. It redirects motivation: faithful work becomes gratitude and service rather than self-salvation.</p></div></article>
+        </div>
+        <div class="leader-close"><p class="mini-label" data-i18n="leader.oneSentence">One sentence to remember</p><blockquote data-i18n="leader.remember">Work hard, but do not ask your work to tell you who you are.</blockquote><a href="index.html" data-lang-link data-i18n="leader.openGroup">Open the group guide →</a></div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>Leader Guide · Counterfeit Gods Chapter 4</p>
-    <p><a href="index.html">Return to the group page</a></p>
-  </footer>
+  <dialog class="live-mode" id="live-mode" aria-labelledby="live-stage-title">
+    <div class="live-shell">
+      <header class="live-header"><div><span class="live-wordmark" data-i18n="leader.liveMode">Live leader mode</span><small id="live-status" aria-live="polite">Paused</small></div><button class="icon-button" id="live-close" type="button" aria-label="Close live mode" data-i18n-aria="live.close">×</button></header>
+      <div class="live-progress" aria-hidden="true"><span id="live-progress"></span></div>
+      <div class="live-body">
+        <div class="live-stage-meta"><span id="live-stage-kicker">01 / 07</span><span id="live-stage-duration">6 minutes</span></div>
+        <h2 id="live-stage-title">Opening</h2>
+        <div class="timer" id="timer-display" role="timer" aria-live="off">06:00</div>
+        <div class="timer-controls">
+          <button id="timer-start" type="button" data-i18n="live.start">Start</button>
+          <button id="timer-pause" type="button" data-i18n="live.pause">Pause</button>
+          <button id="timer-reset" type="button" data-i18n="live.reset">Reset</button>
+        </div>
+        <div class="live-cue"><span data-i18n="live.promptLabel">Primary prompt</span><p id="live-prompt"></p></div>
+        <div class="live-cue transition-cue"><span data-i18n="live.transitionLabel">Transition</span><p id="live-transition"></p></div>
+        <a class="group-section-link" id="group-section-link" href="index.html#opening" target="_blank" rel="noopener"><span data-i18n="live.openGroup">Open this group section</span><b aria-hidden="true">↗</b></a>
+      </div>
+      <footer class="live-footer"><button id="stage-prev" type="button"><span aria-hidden="true">←</span><span data-i18n="live.previous">Previous</span></button><button id="stage-next" type="button"><span data-i18n="live.next">Next stage</span><span aria-hidden="true">→</span></button></footer>
+    </div>
+  </dialog>
+
+  <footer class="site-footer"><p><span data-i18n="leader.label">Leader guide</span> · <span data-i18n="brand.full">Counterfeit Gods</span> <span data-i18n="common.chapterFour">Chapter 4</span></p><p><a href="index.html" data-lang-link data-i18n="common.groupGuide">Return to the group guide</a></p></footer>
 </body>
 </html>

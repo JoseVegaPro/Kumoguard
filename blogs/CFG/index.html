@@ -3,186 +3,195 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#17130f">
-  <meta name="description" content="A phone-first small group guide for The Seduction of Success, based on Counterfeit Gods chapter 4 and 2 Kings 5.">
+  <meta name="theme-color" content="#171410">
+  <meta name="description" content="A phone-first small-group study of success, grace, and Naaman's story in 2 Kings 5.">
+  <meta property="og:title" content="The Seduction of Success">
+  <meta property="og:description" content="Counterfeit Gods, Chapter 4 · A 60-minute small-group guide">
   <title>The Seduction of Success | Counterfeit Gods</title>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        var query = new URLSearchParams(location.search).get("lang");
+        lang = query === "ja" || query === "en" ? query : (localStorage.getItem("cfg-language") || "en");
+      } catch (_) {}
+      if (lang === "ja") {
+        document.documentElement.lang = "ja";
+        document.documentElement.dataset.lang = "ja";
+        document.documentElement.classList.add("i18n-pending");
+      }
+    }());
+  </script>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/lesson.js" defer></script>
   <script src="js/i18n.js" defer></script>
+  <script src="js/lesson.js" defer></script>
+  <noscript><style>html body{visibility:visible!important}</style></noscript>
 </head>
-<body>
+<body class="group-page" data-page="group">
+  <a class="skip-link" href="#main-content" data-i18n="a11y.skip">Skip to content</a>
   <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="Back to the beginning">
-      <span class="brand-mark">CG</span>
-      <span>Counterfeit Gods</span>
+    <a class="brand" href="#top" data-i18n-aria="a11y.backTop" aria-label="Back to the beginning">
+      <span class="brand-mark" aria-hidden="true">CG</span>
+      <span class="brand-name" data-i18n="brand.short">Counterfeit Gods</span>
     </a>
     <div class="topbar-actions">
-      <span class="group-badge">Group Guide</span>
-      <button class="lang-button" id="lang-button" type="button" aria-label="日本語に切り替える">日本語</button>
+      <span class="guide-label" data-i18n="group.label">Group guide</span>
+      <button class="lang-button" id="lang-button" type="button" data-i18n-aria="language.switchJa" aria-label="Switch to Japanese">日本語</button>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section" data-section="Start">
-      <p class="eyebrow">Chapter 4 · Small Group Guide</p>
-      <h1>The Seduction<br>of <em>Success</em></h1>
-      <p class="hero-copy">Success is a good gift. It becomes a counterfeit god when we ask it to prove our worth, secure our future, or make us acceptable.</p>
-      <div class="hero-meta">
-        <span>2 Kings 5:1–16</span>
-        <span>60 minutes</span>
+  <main id="main-content">
+    <section class="hero section" id="top" aria-labelledby="page-title">
+      <div class="river-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-inner">
+        <p class="eyebrow" data-i18n="group.chapter">Chapter 4 · Small-group guide</p>
+        <h1 id="page-title"><span data-i18n="title.line1">The Seduction</span><span><small data-i18n="title.of">of</small> <em data-i18n="title.success">Success</em></span></h1>
+        <p class="hero-copy" data-i18n="group.heroCopy">Success is a good gift. It becomes a counterfeit god when we ask it to prove our worth, secure our future, or make us acceptable.</p>
+        <div class="hero-meta" aria-label="Lesson details" data-i18n-aria="a11y.lessonDetails">
+          <span data-i18n="ref.kings">2 Kings 5:1–16</span>
+          <span data-i18n="common.sixtyMinutes">60 minutes</span>
+        </div>
+        <a class="start-button" href="#opening"><span data-i18n="group.begin">Begin the conversation</span><b aria-hidden="true">↓</b></a>
       </div>
-      <a class="start-button" href="#opening">Begin the conversation <span aria-hidden="true">↓</span></a>
     </section>
 
-    <nav class="jump-nav" aria-label="Lesson sections">
-      <a href="#opening">Open</a>
-      <a href="#story">Story</a>
-      <a href="#diagnosis">Diagnose</a>
-      <a href="#grace">Grace</a>
-      <a href="#discuss">Discuss</a>
+    <nav class="jump-nav" aria-label="Lesson sections" data-i18n-aria="a11y.lessonSections">
+      <div class="jump-nav-track">
+        <a href="#opening" data-i18n="nav.opening">Opening</a>
+        <a href="#roots" data-i18n="nav.gift">The gift</a>
+        <a href="#story" data-i18n="nav.story">Naaman</a>
+        <a href="#diagnosis" data-i18n="nav.diagnosis">Diagnosis</a>
+        <a href="#grace" data-i18n="nav.grace">Grace</a>
+        <a href="#discuss" data-i18n="nav.discussion">Discussion</a>
+        <a href="#practice" data-i18n="nav.practice">Practice</a>
+      </div>
     </nav>
 
-    <section class="section lesson-section" id="opening" data-section="Opening">
-      <div class="section-number">01</div>
-      <p class="eyebrow">Opening · 8 minutes</p>
-      <h2>What does success promise us?</h2>
-      <div class="prompt featured-prompt">
-        <p>When you imagine a “successful person,” what do you picture—and what do you assume that person feels inside?</p>
-      </div>
-      <div class="big-idea">
-        <span>Big idea</span>
-        <p>Achievement can describe what we have done. It cannot tell us who we are or what we are worth.</p>
-      </div>
-    </section>
-
-    <section class="section lesson-section dark-section" id="roots" data-section="The gift">
-      <div class="section-number">02</div>
-      <p class="eyebrow">Biblical foundation · 7 minutes</p>
-      <h2>A good thing becomes a god thing</h2>
-      <p>Genesis presents fruitful work, cultivation, and responsibility as part of humanity’s calling. The problem is not achievement itself. The problem begins when achievement becomes the source of our identity and security.</p>
-      <div class="verse-card">
-        <span class="verse-ref">Genesis 1:26–28</span>
-        <p>God gives humanity the responsibility to cultivate, multiply, and exercise wise stewardship over creation.</p>
-      </div>
-      <div class="contrast">
-        <div>
-          <span class="contrast-label">Gift</span>
-          <strong>“I use my abilities faithfully.”</strong>
+    <section class="section lesson-section paper-section" id="opening" data-section="opening">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">01</span>
+          <div><p class="eyebrow"><span data-i18n="nav.opening">Opening</span> · <span data-i18n="time.six">6 minutes</span></p><h2 data-i18n="opening.title">What does success promise us?</h2></div>
         </div>
-        <div>
-          <span class="contrast-label danger">Idol</span>
-          <strong>“My abilities prove my value.”</strong>
+        <div class="content-narrow">
+          <div class="prompt featured-prompt"><p data-i18n="opening.prompt">When you imagine a “successful person,” what do you picture—and what do you assume that person feels inside?</p></div>
+          <div class="big-idea"><span data-i18n="opening.bigIdea">Big idea</span><p data-i18n="opening.idea">Achievement can describe what we have done. It cannot tell us who we are or what we are worth.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section lesson-section" id="story" data-section="Naaman">
-      <div class="section-number">03</div>
-      <p class="eyebrow">Read together · 15 minutes</p>
-      <h2>Naaman had everything—<br>except what he needed</h2>
-      <p class="reading-callout"><strong>Read 2 Kings 5:1–16 aloud.</strong> Ask different people to read the narrator, servant girl, king, Elisha’s messenger, Naaman, and Naaman’s servants.</p>
-
-      <div class="story-path" aria-label="Naaman's story in four movements">
-        <article>
-          <span>1</span>
-          <div><h3>Accomplished, but powerless</h3><p>Naaman has rank, reputation, courage, and influence. None of them can heal him.</p></div>
-        </article>
-        <article>
-          <span>2</span>
-          <div><h3>Looking to power</h3><p>He arrives with a royal letter, wealth, and status—tools that have worked everywhere else.</p></div>
-        </article>
-        <article>
-          <span>3</span>
-          <div><h3>Offended by simplicity</h3><p>He expects ceremony or a great task. Instead, he receives a simple instruction he cannot turn into an achievement.</p></div>
-        </article>
-        <article>
-          <span>4</span>
-          <div><h3>Healed by receiving</h3><p>Naaman humbles himself, washes, and discovers that God’s gift cannot be purchased or earned.</p></div>
-        </article>
-      </div>
-
-      <div class="prompt">
-        <span>Observe</span>
-        <p>Why was Naaman more willing to do “some great thing” than to follow a simple instruction?</p>
+    <section class="section lesson-section dark-section" id="roots" data-section="roots">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">02</span>
+          <div><p class="eyebrow"><span data-i18n="roots.kicker">Biblical foundation</span> · <span data-i18n="time.six">6 minutes</span></p><h2 data-i18n="roots.title">A good thing becomes a god thing</h2></div>
+        </div>
+        <div class="roots-layout">
+          <div>
+            <p class="section-lede" data-i18n="roots.body">Genesis presents fruitful work, cultivation, and responsibility as part of humanity’s calling. The problem is not achievement itself. The problem begins when achievement becomes the source of our identity and security.</p>
+            <div class="verse-card"><span class="verse-ref" data-i18n="ref.genesis">Genesis 1:26–28</span><p data-i18n="roots.verseSummary">God gives humanity the responsibility to cultivate, multiply, and exercise wise stewardship over creation.</p></div>
+          </div>
+          <div class="contrast" aria-label="Gift and idol comparison" data-i18n-aria="a11y.giftIdol">
+            <article><span class="contrast-label" data-i18n="roots.gift">Gift</span><strong data-i18n="roots.giftLine">“I use my abilities faithfully.”</strong></article>
+            <article><span class="contrast-label danger" data-i18n="roots.idol">Idol</span><strong data-i18n="roots.idolLine">“My abilities prove my value.”</strong></article>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section lesson-section" id="diagnosis" data-section="Diagnosis">
-      <div class="section-number">04</div>
-      <p class="eyebrow">Look beneath the surface · 10 minutes</p>
-      <h2>When success becomes worship</h2>
-      <p>Success may be functioning as an idol when it controls our emotional stability, relationships, or view of ourselves.</p>
-      <div class="diagnostic-list">
-        <label><input type="checkbox"><span><strong>Restlessness</strong>I can celebrate briefly, but I immediately need the next win.</span></label>
-        <label><input type="checkbox"><span><strong>Fear</strong>Failure feels like exposure, not simply disappointment.</span></label>
-        <label><input type="checkbox"><span><strong>Comparison</strong>Another person’s progress feels like my loss.</span></label>
-        <label><input type="checkbox"><span><strong>Entitlement</strong>I believe good performance should protect me from hardship.</span></label>
-        <label><input type="checkbox"><span><strong>Identity</strong>Without my role or achievements, I am unsure who I am.</span></label>
-      </div>
-      <p class="private-note">These boxes are for private reflection. Nothing is submitted or saved.</p>
-    </section>
-
-    <section class="section lesson-section split-section" id="grace" data-section="Grace">
-      <div class="section-number">05</div>
-      <p class="eyebrow">The turning point · 10 minutes</p>
-      <h2>Barter says “earn.”<br>Grace says “receive.”</h2>
-      <div class="two-ways">
-        <article class="barter-card">
-          <span>The barter system</span>
-          <p>If I perform well, God and other people will owe me approval, protection, or prosperity.</p>
-        </article>
-        <article class="grace-card">
-          <span>The way of grace</span>
-          <p>Every good gift comes from God. His saving love is not a wage for our performance; it is received through Christ.</p>
-        </article>
-      </div>
-      <div class="verse-row">
-        <div><strong>1 Corinthians 4:7</strong><span>What do you have that you did not receive?</span></div>
-        <div><strong>James 1:17</strong><span>Every good and perfect gift is from above.</span></div>
-      </div>
-      <div class="gospel-center">
-        <p class="eyebrow">The greater servant</p>
-        <h3>Jesus has already done the great thing.</h3>
-        <p>The servant girl points Naaman toward healing despite the suffering caused by his nation. Jesus goes further: the true Suffering Servant bears the cost of forgiveness and gives us an identity we do not have to achieve.</p>
+    <section class="section lesson-section paper-section" id="story" data-section="story">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">03</span>
+          <div><p class="eyebrow"><span data-i18n="story.kicker">Read together</span> · <span data-i18n="time.fourteen">14 minutes</span></p><h2><span data-i18n="story.title1">Naaman had everything—</span><br><em data-i18n="story.title2">except what he needed</em></h2></div>
+        </div>
+        <div class="reading-callout"><strong data-i18n="story.readStrong">Read 2 Kings 5:1–16 aloud.</strong><span data-i18n="story.readBody"> Ask different people to read the narrator, servant girl, king, Elisha’s messenger, Naaman, and Naaman’s servants.</span></div>
+        <div class="story-path" aria-label="Naaman's story in four movements" data-i18n-aria="a11y.storyMovements">
+          <article><span aria-hidden="true">1</span><div><h3 data-i18n="story.step1Title">Accomplished, but powerless</h3><p data-i18n="story.step1Body">Naaman has rank, reputation, courage, and influence. None of them can heal him.</p></div></article>
+          <article><span aria-hidden="true">2</span><div><h3 data-i18n="story.step2Title">Looking to power</h3><p data-i18n="story.step2Body">He arrives with a royal letter, wealth, and status—tools that have worked everywhere else.</p></div></article>
+          <article><span aria-hidden="true">3</span><div><h3 data-i18n="story.step3Title">Offended by simplicity</h3><p data-i18n="story.step3Body">He expects ceremony or a great task. Instead, he receives a simple instruction he cannot turn into an achievement.</p></div></article>
+          <article><span aria-hidden="true">4</span><div><h3 data-i18n="story.step4Title">Healed by receiving</h3><p data-i18n="story.step4Body">Naaman humbles himself, washes, and discovers that God’s gift cannot be purchased or earned.</p></div></article>
+        </div>
+        <div class="prompt observation-prompt"><span data-i18n="story.observe">Observe</span><p data-i18n="story.question">Why was Naaman more willing to do “some great thing” than to follow a simple instruction?</p></div>
       </div>
     </section>
 
-    <section class="section lesson-section" id="discuss" data-section="Discussion">
-      <div class="section-number">06</div>
-      <p class="eyebrow">Small groups · 15 minutes</p>
-      <h2>Bring it into the light</h2>
-      <ol class="questions">
-        <li><span>01</span><p>What lies beneath your desire to succeed or to be seen as successful?</p></li>
-        <li><span>02</span><p>When does accomplishment stop being something you do and become the measure of your worth?</p></li>
-        <li><span>03</span><p>Where do you slip into a barter relationship with God: “If I do this, God should do that”?</p></li>
-        <li><span>04</span><p>What does Naaman need to surrender before he can receive grace?</p></li>
-        <li><span>05</span><p>How does Jesus’ completed work free you to pursue excellence without being enslaved by it?</p></li>
-      </ol>
+    <section class="section lesson-section diagnosis-section" id="diagnosis" data-section="diagnosis">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">04</span>
+          <div><p class="eyebrow"><span data-i18n="diagnosis.kicker">Look beneath the surface</span> · <span data-i18n="time.eight">8 minutes</span></p><h2 data-i18n="diagnosis.title">When success becomes worship</h2></div>
+        </div>
+        <p class="section-lede content-narrow" data-i18n="diagnosis.body">Success may be functioning as an idol when it controls our emotional stability, relationships, or view of ourselves.</p>
+        <div class="diagnostic-list">
+          <label><input type="checkbox"><span><strong data-i18n="diagnosis.restlessness">Restlessness</strong><span data-i18n="diagnosis.restlessnessBody">I can celebrate briefly, but I immediately need the next win.</span></span></label>
+          <label><input type="checkbox"><span><strong data-i18n="diagnosis.fear">Fear</strong><span data-i18n="diagnosis.fearBody">Failure feels like exposure, not simply disappointment.</span></span></label>
+          <label><input type="checkbox"><span><strong data-i18n="diagnosis.comparison">Comparison</strong><span data-i18n="diagnosis.comparisonBody">Another person’s progress feels like my loss.</span></span></label>
+          <label><input type="checkbox"><span><strong data-i18n="diagnosis.entitlement">Entitlement</strong><span data-i18n="diagnosis.entitlementBody">I believe good performance should protect me from hardship.</span></span></label>
+          <label><input type="checkbox"><span><strong data-i18n="diagnosis.identity">Identity</strong><span data-i18n="diagnosis.identityBody">Without my role or achievements, I am unsure who I am.</span></span></label>
+        </div>
+        <p class="private-note" data-i18n="diagnosis.private">These boxes are for private reflection. Nothing is submitted or saved.</p>
+      </div>
     </section>
 
-    <section class="section lesson-section closing" id="practice" data-section="Practice">
-      <div class="section-number">07</div>
-      <p class="eyebrow">Response · 5 minutes</p>
-      <h2>Lay down the need to prove yourself</h2>
-      <div class="practice-grid">
-        <div><span>Notice</span><p>Name one situation where performance is controlling your peace.</p></div>
-        <div><span>Receive</span><p>Thank God for one ability or opportunity as a gift rather than a possession.</p></div>
-        <div><span>Practice</span><p>Do one faithful act this week that may never be noticed or praised.</p></div>
+    <section class="section lesson-section grace-section" id="grace" data-section="grace">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">05</span>
+          <div><p class="eyebrow"><span data-i18n="grace.kicker">The turning point</span> · <span data-i18n="time.ten">10 minutes</span></p><h2><span data-i18n="grace.title1">Barter says “earn.”</span><br><em data-i18n="grace.title2">Grace says “receive.”</em></h2></div>
+        </div>
+        <div class="two-ways">
+          <article class="barter-card"><span data-i18n="grace.barter">The barter system</span><p data-i18n="grace.barterBody">If I perform well, God and other people will owe me approval, protection, or prosperity.</p></article>
+          <article class="grace-card"><span data-i18n="grace.way">The way of grace</span><p data-i18n="grace.wayBody">Every good gift comes from God. His saving love is not a wage for our performance; it is received through Christ.</p></article>
+        </div>
+        <div class="verse-row">
+          <article><strong data-i18n="ref.corinthians">1 Corinthians 4:7</strong><span data-i18n="grace.corinthians">What do you have that you did not receive?</span></article>
+          <article><strong data-i18n="ref.james">James 1:17</strong><span data-i18n="grace.james">Every good and perfect gift is from above.</span></article>
+        </div>
+        <div class="gospel-center"><p class="eyebrow" data-i18n="grace.servant">The greater servant</p><h3 data-i18n="grace.gospelTitle">Jesus has already done the great thing.</h3><p data-i18n="grace.gospelBody">The servant girl points Naaman toward healing despite the suffering caused by his nation. Jesus goes further: the true Suffering Servant bears the cost of forgiveness and gives us an identity we do not have to achieve.</p></div>
       </div>
-      <div class="prayer">
-        <span>Closing prayer</span>
-        <p>Father, every good gift we have comes from you. Forgive us for turning achievement into our identity and treating your grace like a reward. Teach us to receive what Christ has done, to work faithfully, and to rest in your love. Amen.</p>
+    </section>
+
+    <section class="section lesson-section discussion-section" id="discuss" data-section="discuss">
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">06</span>
+          <div><p class="eyebrow"><span data-i18n="discussion.kicker">Small groups</span> · <span data-i18n="time.twelve">12 minutes</span></p><h2 data-i18n="discussion.title">Bring it into the light</h2></div>
+        </div>
+        <ol class="questions">
+          <li><span aria-hidden="true">01</span><p data-i18n="discussion.q1">What lies beneath your desire to succeed or to be seen as successful?</p></li>
+          <li><span aria-hidden="true">02</span><p data-i18n="discussion.q2">When does accomplishment stop being something you do and become the measure of your worth?</p></li>
+          <li><span aria-hidden="true">03</span><p data-i18n="discussion.q3">Where do you slip into a barter relationship with God: “If I do this, God should do that”?</p></li>
+          <li><span aria-hidden="true">04</span><p data-i18n="discussion.q4">What does Naaman need to surrender before he can receive grace?</p></li>
+          <li><span aria-hidden="true">05</span><p data-i18n="discussion.q5">How does Jesus’ completed work free you to pursue excellence without being enslaved by it?</p></li>
+        </ol>
       </div>
-      <a class="back-top" href="#top">Back to the beginning ↑</a>
+    </section>
+
+    <section class="section lesson-section closing" id="practice" data-section="practice">
+      <div class="river-rings closing-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="section-shell">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">07</span>
+          <div><p class="eyebrow"><span data-i18n="practice.kicker">Response</span> · <span data-i18n="time.four">4 minutes</span></p><h2 data-i18n="practice.title">Lay down the need to prove yourself</h2></div>
+        </div>
+        <div class="practice-grid">
+          <article><span data-i18n="practice.notice">Notice</span><p data-i18n="practice.noticeBody">Name one situation where performance is controlling your peace.</p></article>
+          <article><span data-i18n="practice.receive">Receive</span><p data-i18n="practice.receiveBody">Thank God for one ability or opportunity as a gift rather than a possession.</p></article>
+          <article><span data-i18n="practice.do">Practice</span><p data-i18n="practice.doBody">Do one faithful act this week that may never be noticed or praised.</p></article>
+        </div>
+        <div class="prayer"><span data-i18n="practice.prayer">Closing prayer</span><p data-i18n="practice.prayerBody">Father, every good gift we have comes from you. Forgive us for turning achievement into our identity and treating your grace like a reward. Teach us to receive what Christ has done, to work faithfully, and to rest in your love. Amen.</p></div>
+        <a class="back-top" href="#top" data-i18n="common.backTop">Back to the beginning ↑</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Counterfeit Gods · Chapter 4</p>
-    <p>Lesson content centered on 2 Kings 5:1–16</p>
-    <p><a href="leader.html">Leader guide</a></p>
+    <p><span data-i18n="brand.full">Counterfeit Gods</span> · <span data-i18n="common.chapterFour">Chapter 4</span></p>
+    <p data-i18n="group.footer">Lesson content centered on 2 Kings 5:1–16</p>
+    <p><a href="leader.html" data-lang-link data-i18n="common.leaderGuide">Leader guide</a></p>
   </footer>
 </body>
 </html>

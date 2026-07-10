@@ -11,13 +11,13 @@
 
 ## Flow
 
-1. Opening question — 8 minutes
-2. The biblical goodness of work — 7 minutes
-3. Read and explore Naaman's story — 15 minutes
-4. Diagnose the idol of success — 10 minutes
+1. Opening question — 6 minutes
+2. The biblical goodness of work — 6 minutes
+3. Read and explore Naaman's story — 14 minutes
+4. Diagnose the idol of success — 8 minutes
 5. Barter versus grace — 10 minutes
-6. Small-group discussion — 15 minutes
-7. Response and prayer — 5 minutes
+6. Small-group discussion — 12 minutes
+7. Response and prayer — 4 minutes
 
 ## Leader emphasis
 
